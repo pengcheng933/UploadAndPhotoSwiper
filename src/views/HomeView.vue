@@ -213,6 +213,7 @@ export default {
      */
     upload() {
       console.log(this.perImg);
+      console.log(this.textarea);
     },
   },
 };
@@ -220,27 +221,46 @@ export default {
 <style lang="scss">
 .home{
   width: 750px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  .top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
   .inputBox {
     width: 750px;
     margin: 0 auto;
 
     textarea {
-      width: 750px;
+      width: 730px;
       min-height: 300px;
+      border: 1px solid #333;
+      box-sizing: border-box;
+    }
+  }
+  .image{
+    width: 730px;
+    height: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    img{
+      width: 300px;
+      height: 300px;
     }
   }
 
   .func {
-    width: 750px;
+    width: 730px;
     height: 150px;
     background-color: pink;
     position: fixed;
-    right: 0;
+    left: 10px;
     bottom: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    box-sizing: border-box;
     & > div {
       width: 100px;
       height: 50px;

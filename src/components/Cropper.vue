@@ -76,7 +76,7 @@ export default {
         guides: false,
         center: false,
         background: false,
-        autoCropArea: 0.8,
+        autoCropArea: 0.8, // 裁剪框为图片大小的80%
         zoomOnWheel: false,
         movable: false,
         rotatable: false,
@@ -85,11 +85,20 @@ export default {
       });
     },
     sureSava() {
+      /**
+       * 保存时，拿到当前cropper实例中数据，并按高压缩比例输出，输出为jpeg图片
+       * @type {string}
+       */
       this.afterImg = this.myCropper.getCroppedCanvas({
         imageSmoothingQuality: 'high',
       }).toDataURL('image/jpeg');
       this.index++;
+      /**
+       * 向父组件传递裁剪过后的值
+       * 判断是否还有数据，有的话再次调用croper进行实例化操作
+       */
       if (this.imageUrl.length > this.index) {
+        // 通知父组件保存值
         this.$emit('imgCropped', { src: this.afterImg, id: this.imageUrl[this.index - 1].id });
         this.nextImg();
       } else {

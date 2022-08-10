@@ -110,11 +110,15 @@ export default {
   },
   methods: {
     initPhotoSwiper() {
+      /**
+       * 结构出来DOM元素
+       */
       const { pswp } = this.$refs;
       const options = {
-        index: this.previewIndex,
+        index: this.previewIndex, // 当前预览索引，也就是显示数组中第几张图片
       };
       this.gallery = new PhotoSwiper(pswp, UI, this.previewImg, options);
+      // 实例化
       this.gallery.init();
       /**
        * 关闭按钮
@@ -132,6 +136,10 @@ export default {
        * 点击下一张时获取对应状态
        */
       this.gallery.listen('beforeChange', () => {
+        /**
+         * this.gallery.getCurrentIndex() 会拿到当前图片索引
+         * @type {*|boolean}
+         */
         this.isactive = this.previewImg[this.gallery.getCurrentIndex()].completed;
       });
     },
