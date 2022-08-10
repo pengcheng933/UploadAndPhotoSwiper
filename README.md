@@ -1,4 +1,7 @@
-# elements
+# uploadAndPhotoSwiper
+
+# 实现思路
+<a href=>CSDN</a>
 
 ## Project setup
 ```
@@ -22,3 +25,5 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+# UploadAndPhotoSwiper
+用cropperjs，photoswipe实现图片，文字，表情上传
