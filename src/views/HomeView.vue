@@ -35,7 +35,7 @@
             type="file"
             id="file"
             style="display: none"
-            accept="image/jpg,image/jpeg,image/png"
+            accept="image/jpg,image/jpeg,image/png,image/gif"
             multiple
             @change="imgChange"
           />
@@ -58,6 +58,7 @@
     <Emoji v-if="showEmoji" @addEmoji="addEmoji"/>
 <!--    裁剪图片-->
     <Cropper
+      :isGif="isGif"
       :imageUrl="imageUrl"
       v-if="showCropper"
       @closeCropper="closeCropper"
@@ -91,6 +92,7 @@ export default {
       perImg: [], // 预览数组
       isPrview: false, // 预览开始
       previewIndex: 0, // 预览索引
+      isGif: false, // 是否是gif类型
     };
   },
   components: {
@@ -138,10 +140,17 @@ export default {
         // eslint-disable-next-line no-await-in-loop
         const rederUrl = await this.syncFile(files[i]);
         console.log(rederUrl);
+        const result = files[i].name.split('.')[1];
+        if (result === 'gif') {
+          this.isGif = true;
+        } else {
+          this.isGif = false;
+        }
         if (this.imageUrl.length === 0) {
           this.imageUrl.push({
             id: rederUrl.loaded,
             url: rederUrl.target.result,
+            isGif: this.isGif,
           });
         } else {
           const status = this.imageUrl.some((item) => item.id === rederUrl.loaded);
@@ -149,6 +158,7 @@ export default {
             this.imageUrl.push({
               url: rederUrl.target.result,
               id: rederUrl.loaded,
+              isGif: this.isGif,
             });
           }
         }
