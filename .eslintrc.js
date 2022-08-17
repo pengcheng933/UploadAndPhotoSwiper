@@ -15,5 +15,6 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-plusplus': ['off'], // 可以++
     'vue/multi-word-component-names': 'off', // 允许一个单词名字
+    camelcase: 'off',
   },
 };
